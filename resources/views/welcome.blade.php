@@ -140,14 +140,14 @@
             <div class="col-md-6">
                 <div class="h-100 p-5 text-bg-light border rounded-3">
 
-                    @for( $i = 0; $i < 3; $i++) <div class="row">
+                    @foreach( $tenis as $tenis_coletado) <div class="row">
                         <div class="col-2"><i class="bi bi-1-square-fill"></i></div>
                         <div class="col-2">Img</div>
                         <div class="col-6">
-                            {{ $nome[$i] }}
+                            {{ $tenis_coletado->marca }} {{$tenis_coletado->modelo}}
                         </div>
                 </div>
-                @endfor
+                @endforeach
                 <!-- <div class="row">
                         <div class="col-2"><i class="bi bi-1-square-fill"></i></div>
                         <div class="col-2">Img</div>
