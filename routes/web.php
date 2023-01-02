@@ -18,6 +18,9 @@ use App\Http\Controllers\ComparaController;
 Route::get('/', [ComparaController::class, 'index']);
 Route::get('/tenis/adiciona', [ComparaController::class, 'adiciona']);
 Route::get('/tenis/edita', [ComparaController::class, 'edita']);
+Route::get('/comparar', [ComparaController::class, 'comparar']);
+Route::post('/comparar', [ComparaController::class, 'gravar_tenis']);
+
 Route::get('/contato', function () {
     return view('contact');
 });
@@ -27,8 +30,4 @@ Route::get('/review', function () {
 });
 Route::get('/loravel', function () {
     return view('loravel');
-});
-
-Route::get('/comparar', function () {
-    return view('compara');
 });

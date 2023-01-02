@@ -17,34 +17,10 @@
                     <div class="card-img-overlay">
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis1" name="select_tenis1" form="form_compara">
-                            <option value=""></option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
+                           <option value=""></option>
+                           @foreach($tenis as $seleciona)
+                            <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -54,33 +30,9 @@
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis2" name="select_tenis2" form="form_compara">
                             <option value=""></option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
+                            @foreach($tenis as $seleciona)
+                            <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -91,33 +43,9 @@
                             <!-- Select2-->
                             <select class="form-control " id="select_tenis3" name="select_tenis3" form="form_compara">
                                 <option value=""></option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espírito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
+                                @foreach($tenis as $seleciona)
+                            <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                            @endforeach
                             </select>
                         </div>
 
@@ -135,12 +63,31 @@
         </form>
 
 
-        <!-- DIv da Direita arquivos-->
+        <!-- DIv da Esquerda arquivos-->
         <div class="row align-items-md-stretch mx-3 mb-2">
             <div class="col-md-6">
                 <div class="h-100 p-5 text-bg-light border rounded-3">
+                    @if (10 > count($tenis))
+                    
+                    @foreach( $tenis as $tenis_coletado)
+                    <div class="row">
+                        <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div>
+                        <div class="col-2">Img</div>
+                        <div class="col-6">{{ $tenis_coletado->marca }} {{$tenis_coletado->modelo}}</div>
+                    </div>
+                    @endforeach
+                    @else
+                    @for( $i = 0; $i < count($tenis); $i++) <div class="row">
+                        <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div>
+                        <div class="col-2">Img</div>
+                        <div class="col-6">
+                            {{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}
+                        </div>
+                </div>
+                @endfor
+                @endif
 
-                    @foreach( $tenis as $tenis_coletado) <div class="row">
+                <!-- @foreach( $tenis as $tenis_coletado) <div class="row">
                         <div class="col-2"><i class="bi bi-1-square-fill"></i></div>
                         <div class="col-2">Img</div>
                         <div class="col-6">
@@ -148,6 +95,7 @@
                         </div>
                 </div>
                 @endforeach
+-->
                 <!-- <div class="row">
                         <div class="col-2"><i class="bi bi-1-square-fill"></i></div>
                         <div class="col-2">Img</div>
@@ -187,19 +135,20 @@
                     </div>
                     <div class="row">
                         <div class="col-2"><i class="bi bi-8-square-fill"></i></div>
-                        <div class="col-2">Img</div>
-                        <div class="col-6">Nome8</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2"><i class="bi bi-9-square-fill"></i></div>
-                        <div class="col-2">Img</div>
-                        <div class="col-6">Nome9</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2"><i class="bi bi-1-square-fill"></i><i class="bi bi-0-square-fill"></i></div>
+                       <div class="col-2"><i class="bi bi-1-square-fill"></i><i class="bi bi-0-square-fill"></i></div>
                         <div class="col-2">Img</div>
                         <div class="col-6">Nome10</div>
-                    </div> -->
+                    </div>
+                <div class="col-2">Img</div>
+                <div class="col-6">Nome8</div>
+            </div>
+            <div class="row">
+                <div class="col-2"><i class="bi bi-9-square-fill"></i></div>
+                <div class="col-2">Img</div>
+                <div class="col-6">Nome9</div>
+            </div>
+            <div class="row">
+ -->
             </div>
         </div>
         <div class="col-md-6">
@@ -214,8 +163,8 @@
     </div>
 
     </div>
-@endsection
-@section('scripts')
+    @endsection
+    @section('scripts')
     <!-- Scripts-->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -229,17 +178,17 @@
             $('#select_tenis1').select2({
                 placeholder: 'Escolha um modelo',
                 allowClear: true,
-                minimumInputLength: 1,
+                //minimumInputLength: 1,
             });
             $('#select_tenis2').select2({
                 placeholder: 'Escolha um modelo',
                 allowClear: true,
-                minimumInputLength: 1,
+                //minimumInputLength: 1,
             });
             $('#select_tenis3').select2({
                 placeholder: 'Escolha um modelo',
                 allowClear: true,
-                minimumInputLength: 1,
+               // minimumInputLength: 1,
             });
         });
     </script>

@@ -23,14 +23,14 @@
     <!-- CABECALHO-->
     <div class="cabecalho">
         <div class="col-10 pt-1 mx-auto bg-light rouded-top shadow align-items-end" style="height:80px">
-            <img src="/img/logo.png" class="ms-4" height="100%" alt="Logotipo">
+            <a href="/" class=""><img src="/img/logo.png" class="ms-4" height="100%" alt="Logotipo"></a>
         </div>
     </div>
     <!--Menu-->
     <div class="bg-dark shadow">
         <nav class="col-10 mx-auto navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
             <div class="container-fluid">
-                <i class="fa fa-home ps-2" style="font-size:24px;color:white"></i>
+                <a href="/"><i class="fa fa-home ps-2" style="font-size:24px;color:white"></i></a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item ps-2">
                         <a class="nav-link active" aria-current="page" href="#">Comparar Tênis</a>
