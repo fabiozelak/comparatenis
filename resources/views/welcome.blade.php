@@ -13,7 +13,7 @@
         <form action="/comparar" method="GET" id="form_compara">
             <div class="row">
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
-                    <img src="semshoes.png" class="card-img my-auto" alt="...">
+                    <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay">
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis1" name="select_tenis1" form="form_compara">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
-                    <img src="semshoes.png" class="card-img my-auto" alt="...">
+                    <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay">
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis2" name="select_tenis2" form="form_compara">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
-                    <img src="semshoes.png" class="card-img my-auto" alt="...">
+                    <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay clearfix">
                         <div class="d-flex align-items-center">
                             <!-- Select2-->
