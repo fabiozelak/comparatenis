@@ -70,16 +70,16 @@
                     @if (10 > count($tenis))
                     
                     @foreach( $tenis as $tenis_coletado)
-                    <div class="row">
-                        <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div>
-                        <div class="col-2">Img</div>
-                        <div class="col-6">{{ $tenis_coletado->marca }} {{$tenis_coletado->modelo}}</div>
+                    <div class="row border border-bottom py-1">
+                        <!-- <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div> -->
+                        <div class="col-2"><img style="width: 80px;" src="/img/tenis/{{$tenis_coletado->imagem1}}" alt="{{$tenis_coletado->modelo}}" srcset=""></div>
+                        <div class="col-10">{{ $tenis_coletado->marca }} {{$tenis_coletado->modelo}}</div>
                     </div>
                     @endforeach
                     @else
-                    @for( $i = 0; $i < count($tenis); $i++) <div class="row">
-                        <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div>
-                        <div class="col-2">Img</div>
+                    @for( $i = 0; $i < count($tenis); $i++) <div class="row border border-bottom py-1">
+                        <!-- <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div> -->
+                        <div class="col-2"><img src="/img/tenis/{{$tenis_coletado->imagem1}}" alt="{{$tenis_coletado->modelo}}" srcset=""></div>
                         <div class="col-6">
                             {{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}
                         </div>

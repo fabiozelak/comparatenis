@@ -49,6 +49,12 @@
 
         </nav>
     </div>
+@if(session('msg'))
+    <div class=" col-10 mx-auto mt-3 alert alert-success alert-dismissible relative fade show">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>Successo!</strong> {{session('msg')}}
+</div>
+@endif
     @yield('content')
     <!-- RODAPE -->
     <div class="container-fluid " id="rodape">

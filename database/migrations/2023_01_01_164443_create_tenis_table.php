@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('lingua',100)->nullable();
             $table->string('cadarco',100)->nullable();
             $table->integer('preco')->nullable();
+            $table->string('imagem1')->nullable();
+            $table->string('imagem2')->nullable();
+            $table->string('imagem3')->nullable();
+            $table->string('imagem_thumb')->nullable();
             $table->timestamps();
             
         });

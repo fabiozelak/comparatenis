@@ -53,10 +53,55 @@ class ComparaController extends Controller
         $tenis->lingua = $request->lingua;
         $tenis->cadarco = $request->cadarco;
         $tenis->preco = $request->preco;
+
+        //upload de imagens
+        if($request->hasFile('imagem1') && $request->file('imagem1')->isValid()){
+            $requestImage = $request->imagem1;
+            $extension = $requestImage->extension();
+            $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
+
+            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+
+            $tenis->imagem1 = $nomeImagem;
+
+        }
+
+        if($request->hasFile('imagem2') && $request->file('imagem2')->isValid()){
+            $requestImage = $request->imagem2;
+            $extension = $requestImage->extension();
+            $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
+
+            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+
+            $tenis->imagem2 = $nomeImagem;
+
+        }
+
+        if($request->hasFile('imagem3') && $request->file('imagem3')->isValid()){
+            $requestImage = $request->imagem3;
+            $extension = $requestImage->extension();
+            $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
+
+            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+
+            $tenis->imagem3 = $nomeImagem;
+
+        }
+
+        if($request->hasFile('imagem_thumb') && $request->file('imagem_thumb')->isValid()){
+            $requestImage = $request->imagem_thumb;
+            $extension = $requestImage->extension();
+            $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
+
+            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+
+            $tenis->imagem_thumb = $nomeImagem;
+
+        }
         
         $tenis->save();
 
-        return redirect('/');
+        return redirect('/')->with('msg','Tenis adicionado ao banco de dados');
 
      }
 }

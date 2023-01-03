@@ -3,11 +3,12 @@
 @section('title','Adicionar Tenis')
 
 @section('content')
+<!-- COLOCAR LUGAR PARA O UPLOAD DE 4 IMAGENS -->
 <div class="conteudo bg-light col-10 mx-auto py-3 rounded-bottom shadow">
-    <div id="adicionar_tenis_container" class="offset-md-1">
+    <div id="adicionar_tenis_container" class="offset-1 col-10">
         <h1 style="text-align: center; padding: 30px 0;">Adicione o tênis</h1>
 
-        <form action="/comparar" method="post">
+        <form action="/comparar" method="post" class="pb-3" enctype="multipart/form-data">
             @csrf <div class="row">
                 <div class="col-6">
                     <div class="form-floating mb-3 mt-3">
@@ -35,10 +36,25 @@
                         <input type="text" class="form-control" id="sola" name="sola" placeholder="Sola" value="">
                         <label for="Sola">Sola</label>
                     </div>
-                    <div class="form-floating mb-3 mt-3">
+                    <div class="row rounded border bg-white mx-1 col-10">
+                        <div class="col-5 pt-4">
+                            <p>Aderência</p>
+                        </div>
 
-                        <input type="text" class="form-control" id="aderencia" name="aderencia" placeholder="Aderência">
-                        <label for="Aderência">Aderência</label>
+                        <div class="col-5">
+                            <div class="form-check">
+                                <input type="radio" name="aderencia" id="aderencia" class="form-check-input" value="Baixa">
+                                <label for="aderencia" class="form-check-label">Baixa</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="aderencia" id="aderencia" class="form-check-input" value="Boa">
+                                <label for="aderencia" class="form-check-label">Boa</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="aderencia" id="aderencia" class="form-check-input" value="Ótima">
+                                <label for="aderencia" class="form-check-label">Ótima</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-floating mb-3 mt-3">
 
@@ -83,10 +99,25 @@
                         <input type="text" class="form-control" id="cabedal" name="cabedal" placeholder="Cabedal">
                         <label for="Cabedal">Cabedal</label>
                     </div>
-                    <div class="form-floating mb-3 mt-3">
+                    <div class="row rounded border bg-white mx-1 col-10">
+                        <div class="col-5 pt-4">
+                            <p>Respirabilidade</p>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="respirabilidade" name="respirabilidade" value="Baixa">
+                                <label class="form-check-label" for="respirabilidade">Baixa</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="respirabilidade" name="respirabilidade" value="Boa">
+                                <label class="form-check-label" for="respirabilidade">Boa</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="respirabilidade" name="respirabilidade" value="Ótima">
+                                <label class="form-check-label" for="respirabilidade">Ótima</label>
+                            </div>
+                        </div>
 
-                        <input type="text" class="form-control" id="respirabilidade" name="respirabilidade" placeholder="Respirabilidade">
-                        <label for="Respirabilidade">Respirabilidade</label>
                     </div>
                     <div class="form-floating mb-3 mt-3">
 
@@ -103,6 +134,10 @@
                         <input type="text" class="form-control" id="preco" name="preco" placeholder="Preço de Lançamento">
                         <label for="Preço de Lançamento">Preço de lançamento</label>
                     </div>
+                </div>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="file" class="form-control-file" id="imagem1" name="imagem1">
+                    <label for="imagem1">Imagem 1 (Principal)</label>
                 </div>
         </form>
     </div>
