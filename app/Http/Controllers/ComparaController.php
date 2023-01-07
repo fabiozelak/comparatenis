@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tenis;
+use Illuminate\Support\Facades\DB;
 
 class ComparaController extends Controller
 {
     public function index(){
         $tenis = tenis::all();
+       // $tenis = DB::select('select id,marca,modelo,imagem1 from tenis');
         $nome = ["Nike Pegasus 39","Adizero Adios Pro 2.0","Fresh Foam 1080 V11"];
         $num_novos = 9;
         return view('welcome',
@@ -19,7 +21,7 @@ class ComparaController extends Controller
             'j' => 1
         ]);
 
-    }
+    } 
 
     public  function    adiciona(){
         return view('tenis.adiciona');
@@ -29,12 +31,27 @@ class ComparaController extends Controller
         return view('tenis.edita');
     }
 
-    public function comparar(){
-        $tenis = tenis::all();
+    public function comparar_tenis(Request $comparacao){
+               $id1 = $comparacao->select_tenis1;
+        $id2 = $comparacao->select_tenis2;
+        $id3 = $comparacao->select_tenis3;
+        $tenis_1 = tenis::FindOrFail($id1);
+        $tenis_2 = tenis::FindOrFail($id2);
+        $tenis_3 = tenis::FindOrFail($id3);
+        $tenis_escolhidos[0] = $tenis_1;
+        $tenis_escolhidos[1] = $tenis_2;
+        $tenis_escolhidos[2] = $tenis_3;
+
+        //$tenis = new tenis;
+
         return view('compara',[
-            'tenis' => $tenis
+            'tenis_1' => $tenis_1,
+            'tenis_2' => $tenis_2,
+            'tenis_3' => $tenis_3,
+            'tenis_escolhidos' => $tenis_escolhidos
         ]);
     }
+
      public function gravar_tenis(Request $request){
         $tenis = new tenis;
 

@@ -19,7 +19,8 @@ Route::get('/', [ComparaController::class, 'index']);
 Route::get('/tenis/adiciona', [ComparaController::class, 'adiciona']);
 Route::get('/tenis/edita', [ComparaController::class, 'edita']);
 Route::get('/comparar', [ComparaController::class, 'comparar']);
-Route::post('/comparar', [ComparaController::class, 'gravar_tenis']);
+Route::post('/adicionar', [ComparaController::class, 'gravar_tenis']);
+Route::post('/comparar', [ComparaController::class, 'comparar_tenis']);
 
 Route::get('/contato', function () {
     return view('contact');

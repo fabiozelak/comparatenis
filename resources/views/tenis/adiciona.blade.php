@@ -8,9 +8,9 @@
     <div id="adicionar_tenis_container" class="offset-1 col-10">
         <h1 style="text-align: center; padding: 30px 0;">Adicione o tênis</h1>
 
-        <form action="/comparar" method="post" class="pb-3" enctype="multipart/form-data">
+        <form action="/adicionar" method="post" class="pb-3" enctype="multipart/form-data">
             @csrf <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="form-floating mb-3 mt-3">
 
                         <input type="text" class="form-control" id="marca" name="marca" placeholder="Marca do Tenis">
@@ -66,10 +66,6 @@
                         <input type="text" class="form-control" id="drop" name="drop" placeholder="Drop">
                         <label for="Drop">Drop em milímetros</label>
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Adicionar Tenis">
-                </div>
-                <div class="col-6">
-
                     <div class="form-group col-6">
                         <label for="Amortecimento">Amortecimento</label>
                         <input type="range" class="form-range" id="amortecimento" name="amortecimento" min="1" max="6" value="1">
@@ -94,6 +90,10 @@
                             <div class="col-2">6</div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+
+
                     <div class="form-floating mb-3 mt-3">
 
                         <input type="text" class="form-control" id="cabedal" name="cabedal" placeholder="Cabedal">
@@ -134,10 +134,27 @@
                         <input type="text" class="form-control" id="preco" name="preco" placeholder="Preço de Lançamento">
                         <label for="Preço de Lançamento">Preço de lançamento</label>
                     </div>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <input type="file" class="form-control-file" id="imagem1" name="imagem1">
-                    <label for="imagem1">Imagem 1 (Principal)</label>
+                    <div class="form-group mb-2">
+                        <label for="imagem1">Imagem 1 (Principal)</label><br>
+                        <input type="file" class="form-control-file" id="imagem1" name="imagem1">
+
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="imagem2">Imagem 2</label><br>
+                        <input type="file" class="form-control-file" id="imagem2" name="imagem2">
+
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="imagem3">Imagem 3</label><br>
+                        <input type="file" class="form-control-file" id="imagem3" name="imagem3">
+
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="imagem_thumb">Thumbnail</label><br>
+                        <input type="file" class="form-control-file" id="imagem_thumb" name="imagem_thumb">
+
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Adicionar Tenis">
                 </div>
         </form>
     </div>

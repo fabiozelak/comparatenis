@@ -10,15 +10,16 @@
             <p class="text-center">BANNER DE PROPAGANDA</p>
         </div>
         <!---CODIGO EXEMPLO CARD -->
-        <form action="/comparar" method="GET" id="form_compara">
+        <form action="/comparar" method="post" id="form_compara">
+            @csrf
             <div class="row">
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
                     <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay">
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis1" name="select_tenis1" form="form_compara">
-                           <option value=""></option>
-                           @foreach($tenis as $seleciona)
+                            <option value=""></option>
+                            @foreach($tenis as $seleciona)
                             <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
                             @endforeach
                         </select>
@@ -44,8 +45,8 @@
                             <select class="form-control " id="select_tenis3" name="select_tenis3" form="form_compara">
                                 <option value=""></option>
                                 @foreach($tenis as $seleciona)
-                            <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
-                            @endforeach
+                                <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -66,28 +67,28 @@
         <!-- DIv da Esquerda arquivos-->
         <div class="row align-items-md-stretch mx-3 mb-2">
             <div class="col-md-6">
-                <div class="h-100 p-5 text-bg-light border rounded-3">
-                    @if (10 > count($tenis))
-                    
-                    @foreach( $tenis as $tenis_coletado)
-                    <div class="row border border-bottom py-1">
-                        <!-- <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div> -->
-                        <div class="col-2"><img style="width: 80px;" src="/img/tenis/{{$tenis_coletado->imagem1}}" alt="{{$tenis_coletado->modelo}}" srcset=""></div>
-                        <div class="col-10">{{ $tenis_coletado->marca }} {{$tenis_coletado->modelo}}</div>
-                    </div>
-                    @endforeach
-                    @else
-                    @for( $i = 0; $i < count($tenis); $i++) <div class="row border border-bottom py-1">
-                        <!-- <div class="col-2"><i class="bi bi-{{$j++}}-square-fill"></i></div> -->
-                        <div class="col-2"><img src="/img/tenis/{{$tenis_coletado->imagem1}}" alt="{{$tenis_coletado->modelo}}" srcset=""></div>
-                        <div class="col-6">
-                            {{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}
-                        </div>
-                </div>
-                @endfor
-                @endif
 
-                <!-- @foreach( $tenis as $tenis_coletado) <div class="row">
+                <div class="h-100 p-5 text-bg-light border rounded-3">
+                    <h3 style="text-align: center;" class="pb-2">Últimas Atualizações!</h3>
+                    <table class="table table-light">
+                        <tbody>
+                            @for ($i = count($tenis)-1; $i > count($tenis)- 4; $i--)
+
+                            <tr>
+                                <td><img style="width: 80px; margin-right: 10px;" src="/img/tenis/{{$tenis[$i]->imagem1}}" alt="{{$tenis[$i]->modelo}}" srcset=""></td>
+                                <td></td>
+                                <td><h6 class="align-bottom">{{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}</h6></td>
+                                <td><h6>{{ date('d/m/Y', strtotime($tenis[$i]->created_at))}}</h6></td>
+                                
+                            </tr>
+
+                            @endfor
+
+                        </tbody>
+
+                    </table>
+
+                    <!-- @foreach( $tenis as $tenis_coletado) <div class="row">
                         <div class="col-2"><i class="bi bi-1-square-fill"></i></div>
                         <div class="col-2">Img</div>
                         <div class="col-6">
@@ -96,7 +97,7 @@
                 </div>
                 @endforeach
 -->
-                <!-- <div class="row">
+                    <!-- <div class="row">
                         <div class="col-2"><i class="bi bi-1-square-fill"></i></div>
                         <div class="col-2">Img</div>
                         <div class="col-6">
@@ -149,18 +150,18 @@
             </div>
             <div class="row">
  -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>ION ICOns</h2>
+                    <p>Or, keep it light and add a border for some added definition to the boundaries of your content.
+                        Be sure to look under the hood at the source HTML here as we've adjusted the alignment and
+                        sizing of both column's content for equal-height.</p>
+                    <button class="btn btn-outline-secondary" type="button">Example button</button>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
-                <h2>ION ICOns</h2>
-                <p>Or, keep it light and add a border for some added definition to the boundaries of your content.
-                    Be sure to look under the hood at the source HTML here as we've adjusted the alignment and
-                    sizing of both column's content for equal-height.</p>
-                <button class="btn btn-outline-secondary" type="button">Example button</button>
-            </div>
-        </div>
-    </div>
 
     </div>
     @endsection
@@ -188,7 +189,7 @@
             $('#select_tenis3').select2({
                 placeholder: 'Escolha um modelo',
                 allowClear: true,
-               // minimumInputLength: 1,
+                // minimumInputLength: 1,
             });
         });
     </script>
