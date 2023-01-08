@@ -16,17 +16,38 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Incones -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <!-- CSS only -->
+    <!-- CSS only -->
     <link rel="stylesheet" href="/css/base.css">
     <title>@yield('title')</title>
 </head>
 
 <body>
     <!-- CABECALHO-->
-    <div class="cabecalho">
-        <div class="col-10 pt-1 mx-auto bg-light rouded-top shadow align-items-end" style="height:80px">
-            <a href="/" class=""><img src="/img/logo.png" class="ms-4" height="100%" alt="Logotipo"></a>
+    <div class="col-10 pt-1 mx-auto bg-light rouded-top shadow align-items-end" style="height:80px">
+<div class="row">
+            <div class="col-4">
+            <a href="/" class=""><img src="/img/logo.png" class="ms-4" height="80px" alt="Logotipo"></a>
         </div>
+        <div class="col-6">
+
+        </div>
+        @auth
+        <div class="col-2">
+            <p>LOgado!</p>
+            <p><form action="/logout" method="POST">@csrf<a href="/logout" class="nav-link" onclick="
+            event.preventDefault();
+            this.closest('form').submit();">
+            SAIR</a></p></form>
+        </div>
+        @endauth
+        @guest
+        <div class="col-2">
+            <p><a href="/login" class="nav-link">ENTRAR</a></p>
+            <p><a href="/register" class="nav-link">REGISTRAR</a></p>
+        </div>
+        @endguest
+</div>
+
     </div>
     <!--Menu-->
     <div class="bg-dark shadow">
@@ -49,12 +70,12 @@
 
         </nav>
     </div>
-@if(session('msg'))
+    @if(session('msg'))
     <div class=" col-10 mx-auto mt-3 alert alert-success alert-dismissible relative fade show">
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  <strong>Successo!</strong> {{session('msg')}}
-</div>
-@endif
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Successo!</strong> {{session('msg')}}
+    </div>
+    @endif
     @yield('content')
     <!-- RODAPE -->
     <div class="container-fluid " id="rodape">
@@ -76,9 +97,9 @@
                 </ul>
             </footer>
         </div>
-       
+
     </div>
-         @yield('scripts')
+    @yield('scripts')
 
 
 
