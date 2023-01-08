@@ -121,4 +121,15 @@ class ComparaController extends Controller
         return redirect('/')->with('msg','Tenis adicionado ao banco de dados');
 
      }
+
+     public function pesquisa(){
+        $search = request('search');
+        $tenis = tenis::where([
+            ['modelo','like','%' . $search . '%']
+            ])->get();
+        return view('pesquisa',[
+            'tenis' => $tenis,
+            'search' => $search
+        ]);
+     }
 }

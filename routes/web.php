@@ -21,6 +21,7 @@ Route::get('/tenis/edita', [ComparaController::class, 'edita']);
 Route::get('/comparar', [ComparaController::class, 'comparar']);
 Route::post('/adicionar', [ComparaController::class, 'gravar_tenis']);
 Route::post('/comparar', [ComparaController::class, 'comparar_tenis']);
+Route::get('/pesquisa', [ComparaController::class, 'pesquisa']);
 
 Route::get('/contato', function () {
     return view('contact');

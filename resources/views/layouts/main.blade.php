@@ -41,8 +41,8 @@
                         <a class="nav-link active" aria-current="page" href="#">Forum</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" action="/pesquisa" method="GET">
+                    <input class="form-control me-2" type="search" placeholder="Search" id="search" name="search" aria-label="Search">
                     <button class="btn" type="submit"><i class="fa fa-search" style="font-size:24px;color:white"></i></button>
                 </form>
             </div>
