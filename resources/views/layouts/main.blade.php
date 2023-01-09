@@ -18,40 +18,45 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- CSS only -->
     <link rel="stylesheet" href="/css/base.css">
+    <script src="/resources/js/script_troca_imagem.js"></script>
     <title>@yield('title')</title>
 </head>
 
 <body>
     <!-- CABECALHO-->
     <div class="col-10 pt-1 mx-auto bg-light rouded-top shadow align-items-end" style="height:80px">
-<div class="row">
+        <div class="row">
             <div class="col-4">
-            <a href="/" class=""><img src="/img/logo.png" class="ms-4" height="80px" alt="Logotipo"></a>
-        </div>
-        <div class="col-6">
+                <a href="/" class=""><img src="/img/logo.png" class="ms-4" height="80px" alt="Logotipo"></a>
+            </div>
+            <div class="col-6">
 
-        </div>
-        @auth
-        <div class="col-2">
-            <p>LOgado!</p>
-            <p><form action="/logout" method="POST">@csrf<a href="/logout" class="nav-link" onclick="
+            </div>
+            @auth
+            <div class="col-2">
+                <p>Logado!</p>
+                <p>
+                <form action="/logout" method="POST">@csrf<a href="/logout" class="nav-link" onclick="
             event.preventDefault();
             this.closest('form').submit();">
-            SAIR</a></p></form>
+                        Sair <i class="bi bi-door-closed"></i></a></p>
+                </form>
+            </div>
+            @endauth
+            @guest
+            <div class="col-2">
+                <div class="row" style="height: 50%;"></div>
+                <div class="row">                
+                <!-- <p><a href="/register" class="nav-link">REGISTRAR</a></p> --></div>
+
+            </div>
+            @endguest
         </div>
-        @endauth
-        @guest
-        <div class="col-2">
-            <p><a href="/login" class="nav-link">ENTRAR</a></p>
-            <p><a href="/register" class="nav-link">REGISTRAR</a></p>
-        </div>
-        @endguest
-</div>
 
     </div>
     <!--Menu-->
     <div class="bg-dark shadow">
-        <nav class="col-10 mx-auto navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <nav class="col-10 mx-auto navbar navbar-expand-md bg-dark navbar-dark sticky-top">
             <div class="container-fluid">
                 <a href="/"><i class="fa fa-home ps-2" style="font-size:24px;color:white"></i></a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -64,8 +69,8 @@
                 </ul>
                 <form class="d-flex" role="search" action="/pesquisa" method="GET">
                     <input class="form-control me-2" type="search" placeholder="Search" id="search" name="search" aria-label="Search">
-                    <button class="btn" type="submit"><i class="fa fa-search" style="font-size:24px;color:white"></i></button>
                 </form>
+                <span class="align-middle"><a href="/login" class="nav-link"><i class="bi bi-door-open white"></i></a></span class="align-center">
             </div>
 
         </nav>

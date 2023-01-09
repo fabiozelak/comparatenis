@@ -1,12 +1,15 @@
 @extends('layouts.main')
-@section('title',"Sobre o Tenis")
+@section('title',"Comparando Tênis")
 @section('content')
 <div class="conteudo bg-light col-10 mx-auto p-3 rounded-bottom shadow">
 
-
-    @if (count($tenis) == 0 && $search)
-    <h1>não foi encontrado nenhum tênis com o termo: {{$search}}!</h1>
+    @if (!$search)
+    <h1>não foi realizado nenhuma busca</h1>
     <a href="/">Voltar para a home</a>
+
+    @elseif (count($tenis) == 0 && $search)
+    <h1>não foi encontrado nenhum tênis com o termo: {{$search}}!</h1>
+
     @else
     <div id="cards_container ms-2 flex" class="row" style="margin: 0;">
         @foreach($tenis as $pesquisa)

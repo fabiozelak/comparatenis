@@ -14,38 +14,38 @@
             @csrf
             <div class="row">
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
-                    <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
+                    <img id="figura1" src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay">
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis1" name="select_tenis1" form="form_compara">
                             <option value=""></option>
                             @foreach($tenis as $seleciona)
-                            <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                            <option id="{{$seleciona->imagem1}}" value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
-                    <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
+                    <img id="figura2" src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay">
                         <!-- Select2-->
                         <select class="form-control m-3" id="select_tenis2" name="select_tenis2" form="form_compara">
                             <option value=""></option>
                             @foreach($tenis as $seleciona)
-                            <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                            <option id="{{$seleciona->imagem1}}" value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="card mx-auto text-bg-light col-sm-12 col-md-5 col-lg-3 mb-3 border-dark" style="height:300px;">
-                    <img src="/img/semshoes.png" class="card-img my-auto" alt="...">
+                    <img id="figura3" src="/img/semshoes.png" class="card-img my-auto" alt="...">
                     <div class="card-img-overlay clearfix">
                         <div class="d-flex align-items-center">
                             <!-- Select2-->
                             <select class="form-control " id="select_tenis3" name="select_tenis3" form="form_compara">
                                 <option value=""></option>
                                 @foreach($tenis as $seleciona)
-                                <option value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
+                                <option id="{{$seleciona->imagem1}}" value="{{$seleciona->id}}">{{$seleciona->marca}} {{$seleciona->modelo}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -77,9 +77,13 @@
                             <tr>
                                 <td><img style="width: 80px; margin-right: 10px;" src="/img/tenis/{{$tenis[$i]->imagem1}}" alt="{{$tenis[$i]->modelo}}" srcset=""></td>
                                 <td></td>
-                                <td><h6 class="align-bottom">{{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}</h6></td>
-                                <td><h6>{{ date('d/m/Y', strtotime($tenis[$i]->created_at))}}</h6></td>
-                                
+                                <td>
+                                    <h6 class="align-bottom">{{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}</h6>
+                                </td>
+                                <td>
+                                    <h6>{{ date('d/m/Y', strtotime($tenis[$i]->created_at))}}</h6>
+                                </td>
+
                             </tr>
 
                             @endfor
@@ -173,24 +177,51 @@
 
     <script>
         $(Document).ready(function() {
-            $("#select_tenis1").select2();
-            $("#select_tenis2").select2();
-            $("#select_tenis3").select2();
-            $('#select_tenis1').select2({
-                placeholder: 'Escolha um modelo',
-                allowClear: true,
-                //minimumInputLength: 1,
-            });
-            $('#select_tenis2').select2({
-                placeholder: 'Escolha um modelo',
-                allowClear: true,
-                //minimumInputLength: 1,
-            });
-            $('#select_tenis3').select2({
-                placeholder: 'Escolha um modelo',
-                allowClear: true,
-                // minimumInputLength: 1,
-            });
-        });
+                    $("#select_tenis1").select2();
+                    $("#select_tenis2").select2();
+                    $("#select_tenis3").select2();
+                    $('#select_tenis1').select2({
+                        placeholder: 'Escolha um modelo',
+                        allowClear: true,
+                        templateSelection: imagemTenis1,
+                        //minimumInputLength: 1,
+                    });
+                    $('#select_tenis2').select2({
+                        placeholder: 'Escolha um modelo',
+                        allowClear: true,
+                        templateSelection: imagemTenis2,
+                        //minimumInputLength: 1,
+                    });
+                    $('#select_tenis3').select2({
+                        placeholder: 'Escolha um modelo',
+                        allowClear: true,
+                        templateSelection: imagemTenis3,
+                        // minimumInputLength: 1,
+                    });
+
+                    function imagemTenis1(select_tenis1) {
+                        if(!select_tenis1.id){
+                            return select_tenis1.text;
+                            document.getElementById('figura1').src = "/img/semshoes.png";
+                        }
+                        document.getElementById('figura1').src = "/img/tenis/" + select_tenis1.element.id.toLowerCase();
+                        
+                        };
+
+                        function imagemTenis2(select_tenis2) {
+                        if(!select_tenis2.id){
+                            return select_tenis2.text;
+                            document.getElementById('figura2').src = "/img/semshoes.png";
+                        }
+                        document.getElementById('figura2').src = "/img/tenis/" + select_tenis2.element.id.toLowerCase();
+                        };
+                        function imagemTenis3(select_tenis3) {
+                        if(!select_tenis3.id){
+                            return select_tenis3.text;
+                            document.getElementById('figura3').src = "/img/semshoes.png";
+                        }
+                        document.getElementById('figura3').src = "/img/tenis/" + select_tenis3.element.id.toLowerCase();
+                        };
+                    });
     </script>
     @endsection

@@ -30,7 +30,9 @@ class ComparaController extends Controller
     public  function    edita(){
         return view('tenis.edita');
     }
-
+    public  function    dashboard_site(){
+        return view('dashboard_site');
+    }
     public function comparar_tenis(Request $comparacao){
                $id1 = $comparacao->select_tenis1;
         $id2 = $comparacao->select_tenis2;
