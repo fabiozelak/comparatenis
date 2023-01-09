@@ -177,51 +177,82 @@
 
     <script>
         $(Document).ready(function() {
-                    $("#select_tenis1").select2();
-                    $("#select_tenis2").select2();
-                    $("#select_tenis3").select2();
-                    $('#select_tenis1').select2({
-                        placeholder: 'Escolha um modelo',
-                        allowClear: true,
-                        templateSelection: imagemTenis1,
-                        //minimumInputLength: 1,
-                    });
-                    $('#select_tenis2').select2({
-                        placeholder: 'Escolha um modelo',
-                        allowClear: true,
-                        templateSelection: imagemTenis2,
-                        //minimumInputLength: 1,
-                    });
-                    $('#select_tenis3').select2({
-                        placeholder: 'Escolha um modelo',
-                        allowClear: true,
-                        templateSelection: imagemTenis3,
-                        // minimumInputLength: 1,
-                    });
+            $('#select_tenis1').select2({
+                placeholder: 'Escolha um modelo',
+                allowClear: true,
+                templateSelection: imagemTenis1,
+            });
+            $('#select_tenis2').select2({});
+            $("#select_tenis2").prop("disabled", true);
+            $('#select_tenis3').select2({});
+            $("#select_tenis3").prop("disabled", true);
+            $('#select_tenis1').on('select2:unselect', function (e) {
+                document.getElementById('figura1').src = "/img/semshoes.png";
+                $('#select_tenis1').select2({
+                placeholder: 'Escolha um modelo',
+                allowClear: true,
+                templateSelection: imagemTenis1,
+            });
+  // Do something
+});
+$('#select_tenis2').on('select2:unselect', function (e) {
+                document.getElementById('figura2').src = "/img/semshoes.png";
+                $('#select_tenis2').select2({});
+                $("#select_tenis2").prop("disabled", true);
+            
+  // Do something
+});
+$('#select_tenis3').on('select2:unselect', function (e) {
+                document.getElementById('figura3').src = "/img/semshoes.png";
+                $('#select_tenis2').select2({});
+            $('#select_tenis3').select2({});
+            $("#select_tenis3").prop("disabled", true);
+  // Do something
+});
+        });
 
-                    function imagemTenis1(select_tenis1) {
-                        if(!select_tenis1.id){
-                            return select_tenis1.text;
-                            document.getElementById('figura1').src = "/img/semshoes.png";
-                        }
-                        document.getElementById('figura1').src = "/img/tenis/" + select_tenis1.element.id.toLowerCase();
-                        
-                        };
+        function imagemTenis1(select_tenis1) {
+            if (!select_tenis1.id) {
+                return select_tenis1.text;
+                document.getElementById('figura1').src = "/img/semshoes.png";
+            }
+            document.getElementById('figura1').src = "/img/tenis/" + select_tenis1.element.id.toLowerCase();
+            
+            $('#select_tenis2').select2({
+                placeholder: 'Escolha um modelo',
+                allowClear: true,
+                templateSelection: imagemTenis2,
+            });
+            $("#select_tenis2").prop("disabled", false);
+            return select_tenis1.text;
 
-                        function imagemTenis2(select_tenis2) {
-                        if(!select_tenis2.id){
-                            return select_tenis2.text;
-                            document.getElementById('figura2').src = "/img/semshoes.png";
-                        }
-                        document.getElementById('figura2').src = "/img/tenis/" + select_tenis2.element.id.toLowerCase();
-                        };
-                        function imagemTenis3(select_tenis3) {
-                        if(!select_tenis3.id){
-                            return select_tenis3.text;
-                            document.getElementById('figura3').src = "/img/semshoes.png";
-                        }
-                        document.getElementById('figura3').src = "/img/tenis/" + select_tenis3.element.id.toLowerCase();
-                        };
-                    });
+        };
+
+        function imagemTenis2(select_tenis2) {
+            if (!select_tenis2.id) {
+                return select_tenis2.text;
+                document.getElementById('figura2').src = "/img/semshoes.png";
+            }
+            document.getElementById('figura2').src = "/img/tenis/" + select_tenis2.element.id.toLowerCase();
+            
+
+            $('#select_tenis3').select2({
+                placeholder: 'Escolha um modelo',
+                allowClear: true,
+                templateSelection: imagemTenis3,
+            });
+            $("#select_tenis3").prop("disabled", false);
+            return select_tenis2.text;
+        };
+
+        function imagemTenis3(select_tenis3) {
+            if (!select_tenis3.id) {
+
+                document.getElementById('figura3').src = "/img/semshoes.png";
+                return select_tenis3.text;
+            }
+            document.getElementById('figura3').src = "/img/tenis/" + select_tenis3.element.id.toLowerCase();
+            return select_tenis3.text;
+        };
     </script>
     @endsection
