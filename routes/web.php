@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComparaController;
 
 Route::get('/', [ComparaController::class, 'index']);
-
 Route::get('/comparar', [ComparaController::class, 'comparar']);
-
 Route::post('/comparar', [ComparaController::class, 'comparar_tenis']);
 Route::get('/pesquisa', [ComparaController::class, 'pesquisa']);
-Route::get('/dashboard_site', [ComparaController::class, 'dashboard_site']);
+//Route::get('/dashboard_site', [ComparaController::class, 'dashboard_site']);
+
+
 
 Route::get('/contato', function () {
     return view('contact');
@@ -39,11 +39,15 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard_site', [ComparaController::class, 'dashboard_site']);
+    Route::get('/dashboard', [ComparaController::class, 'dashboard_site']);
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard_site',[
+
+    //     ]);
+    // })->name('dashboard');
     Route::post('/adicionar', [ComparaController::class, 'gravar_tenis']);
     Route::get('/tenis/edita', [ComparaController::class, 'edita']);
     Route::get('/tenis/adiciona', [ComparaController::class, 'adiciona']);
-
+    Route::delete('/dashboard_site/{id}', [ComparaController::class, 'destroy']);
 });

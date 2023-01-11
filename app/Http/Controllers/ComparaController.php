@@ -8,33 +8,46 @@ use Illuminate\Support\Facades\DB;
 
 class ComparaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $tenis = tenis::all();
-       // $tenis = DB::select('select id,marca,modelo,imagem1 from tenis');
-        $nome = ["Nike Pegasus 39","Adizero Adios Pro 2.0","Fresh Foam 1080 V11"];
+        // $tenis = DB::select('select id,marca,modelo,imagem1 from tenis');
+        $nome = ["Nike Pegasus 39", "Adizero Adios Pro 2.0", "Fresh Foam 1080 V11"];
         $num_novos = 9;
-        return view('welcome',
-        [
-            'nome' => $nome,
-            'num_novos' => $num_novos,
-            'tenis' => $tenis,
-            'j' => 1
-        ]);
+        return view(
+            'welcome',
+            [
+                'nome' => $nome,
+                'num_novos' => $num_novos,
+                'tenis' => $tenis,
+                'j' => 1
+            ]
+        );
+    }
 
-    } 
-
-    public  function    adiciona(){
+    public  function    adiciona()
+    {
         return view('tenis.adiciona');
     }
 
-    public  function    edita(){
+    public  function    edita()
+    {
         return view('tenis.edita');
     }
-    public  function    dashboard_site(){
-        return view('dashboard_site');
+    public  function    dashboard_site()
+    {
+        $tenis = tenis::all();
+
+        return view(
+            'dashboard_site',
+            [
+                'tenis' => $tenis,
+            ]
+        );
     }
-    public function comparar_tenis(Request $comparacao){
-               $id1 = $comparacao->select_tenis1;
+    public function comparar_tenis(Request $comparacao)
+    {
+        $id1 = $comparacao->select_tenis1;
         $id2 = $comparacao->select_tenis2;
         $id3 = $comparacao->select_tenis3;
         $tenis_1 = tenis::FindOrFail($id1);
@@ -46,7 +59,7 @@ class ComparaController extends Controller
 
         //$tenis = new tenis;
 
-        return view('compara',[
+        return view('compara', [
             'tenis_1' => $tenis_1,
             'tenis_2' => $tenis_2,
             'tenis_3' => $tenis_3,
@@ -54,7 +67,8 @@ class ComparaController extends Controller
         ]);
     }
 
-     public function gravar_tenis(Request $request){
+    public function gravar_tenis(Request $request)
+    {
         $tenis = new tenis;
 
         $tenis->marca = $request->marca;
@@ -74,64 +88,70 @@ class ComparaController extends Controller
         $tenis->preco = $request->preco;
 
         //upload de imagens
-        if($request->hasFile('imagem1') && $request->file('imagem1')->isValid()){
+        if ($request->hasFile('imagem1') && $request->file('imagem1')->isValid()) {
             $requestImage = $request->imagem1;
             $extension = $requestImage->extension();
             $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
 
-            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+            $requestImage->move(public_path('img/tenis'), $nomeImagem);
 
             $tenis->imagem1 = $nomeImagem;
-
         }
 
-        if($request->hasFile('imagem2') && $request->file('imagem2')->isValid()){
+        if ($request->hasFile('imagem2') && $request->file('imagem2')->isValid()) {
             $requestImage = $request->imagem2;
             $extension = $requestImage->extension();
             $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
 
-            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+            $requestImage->move(public_path('img/tenis'), $nomeImagem);
 
             $tenis->imagem2 = $nomeImagem;
-
         }
 
-        if($request->hasFile('imagem3') && $request->file('imagem3')->isValid()){
+        if ($request->hasFile('imagem3') && $request->file('imagem3')->isValid()) {
             $requestImage = $request->imagem3;
             $extension = $requestImage->extension();
             $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
 
-            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+            $requestImage->move(public_path('img/tenis'), $nomeImagem);
 
             $tenis->imagem3 = $nomeImagem;
-
         }
 
-        if($request->hasFile('imagem_thumb') && $request->file('imagem_thumb')->isValid()){
+        if ($request->hasFile('imagem_thumb') && $request->file('imagem_thumb')->isValid()) {
             $requestImage = $request->imagem_thumb;
             $extension = $requestImage->extension();
             $nomeImagem = md5($requestImage->getClientOriginalName() . strtotime("now")) . '.' . $extension;
 
-            $requestImage->move(public_path('img/tenis'),$nomeImagem);
+            $requestImage->move(public_path('img/tenis'), $nomeImagem);
 
             $tenis->imagem_thumb = $nomeImagem;
-
         }
-        
+
         $tenis->save();
 
-        return redirect('/')->with('msg','Tenis adicionado ao banco de dados');
+        return redirect('/dashboard_site')->with('msg', 'Tenis adicionado ao banco de dados');
+    }
 
-     }
-
-     public function pesquisa(){
+    public function pesquisa()
+    {
         $search = request('search');
         $tenis = tenis::where([
-            ['modelo','like','%' . $search . '%']
-            ])->get();
-        return view('pesquisa',[
+            ['modelo', 'like', '%' . $search . '%']
+        ])->get();
+        return view('pesquisa', [
             'tenis' => $tenis,
             'search' => $search
         ]);
-     }
+    }
+
+    public function destroy($id)
+    {
+        tenis::findOrFail($id)->delete();
+        $tenis = tenis::all();
+
+        return view('dashboard_site', [
+            'tenis' => $tenis,
+        ])->with('msg', 'Evento Excluído com sucesso!');
+    }
 }

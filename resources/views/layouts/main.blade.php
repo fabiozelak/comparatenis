@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- CSS only -->
     <link rel="stylesheet" href="/css/base.css">
-    <script src="/resources/js/script_troca_imagem.js"></script>
     <title>@yield('title')</title>
 </head>
 
@@ -34,20 +33,20 @@
             </div>
             @auth
             <div class="col-2">
-                <p>Logado!</p>
+                <p><a href="/dashboard_site" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</p></a>
                 <p>
-                <form action="/logout" method="POST">@csrf<a href="/logout" class="nav-link" onclick="
+                <form style="display: inline-block;" action="/logout" method="POST">@csrf<a href="/logout" class="nav-link" onclick="
             event.preventDefault();
-            this.closest('form').submit();">
-                        Sair <i class="bi bi-door-closed"></i></a></p>
+            this.closest('form').submit();"><i class="bi bi-door-closed"></i> Deslogar</a></p>
                 </form>
             </div>
             @endauth
             @guest
             <div class="col-2">
                 <div class="row" style="height: 50%;"></div>
-                <div class="row">                
-                <!-- <p><a href="/register" class="nav-link">REGISTRAR</a></p> --></div>
+                <div class="row">
+                    <!-- <p><a href="/register" class="nav-link">REGISTRAR</a></p> -->
+                </div>
 
             </div>
             @endguest
@@ -75,12 +74,6 @@
 
         </nav>
     </div>
-    @if(session('msg'))
-    <div class=" col-10 mx-auto mt-3 alert alert-success alert-dismissible relative fade show">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Successo!</strong> {{session('msg')}}
-    </div>
-    @endif
     @yield('content')
     <!-- RODAPE -->
     <div class="container-fluid " id="rodape">
@@ -96,9 +89,10 @@
                 </div>
 
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa fa-twitter-square" style="font-size:24px;color:gray"></i> </a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa fa-instagram" style="font-size:24px;color:gray"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa fa-facebook-square" style="font-size:24px;color:gray"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="/contato"><i class="bi bi-envelope-at" style="font-size:20px;color:gray"></i> </a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter" style="font-size:20px;color:gray"></i> </a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram" style="font-size:20px;color:gray"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook" style="font-size:20px;color:gray"></i></a></li>
                 </ul>
             </footer>
         </div>

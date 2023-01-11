@@ -72,21 +72,40 @@
                     <h3 style="text-align: center;" class="pb-2">Últimas Atualizações!</h3>
                     <table class="table table-light">
                         <tbody>
-                            @for ($i = count($tenis)-1; $i > count($tenis)- 4; $i--)
+                            @if(count($tenis)< 10)
+                            @for ($i=count($tenis)-1; $i>= 0; $i--)
 
-                            <tr>
-                                <td><img style="width: 80px; margin-right: 10px;" src="/img/tenis/{{$tenis[$i]->imagem1}}" alt="{{$tenis[$i]->modelo}}" srcset=""></td>
-                                <td></td>
-                                <td>
-                                    <h6 class="align-bottom">{{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}</h6>
-                                </td>
-                                <td>
-                                    <h6>{{ date('d/m/Y', strtotime($tenis[$i]->created_at))}}</h6>
-                                </td>
+                                <tr>
+                                    <td><img style="width: 80px; margin-right: 10px;" src="/img/tenis/{{$tenis[$i]->imagem1}}" alt="{{$tenis[$i]->modelo}}" srcset=""></td>
+                                    <td></td>
+                                    <td>
+                                        <h6 class="align-bottom">{{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}</h6>
+                                    </td>
+                                    <td>
+                                        <h6>{{ date('d/m/Y', strtotime($tenis[$i]->created_at))}}</h6>
+                                    </td>
 
-                            </tr>
+                                </tr>
 
-                            @endfor
+                                @endfor
+                                @else
+                                @for ($i = count($tenis)-1; $i>= count($tenis)- 10; $i--)
+
+                                <tr>
+                                    <td><img style="width: 80px; margin-right: 10px;" src="/img/tenis/{{$tenis[$i]->imagem1}}" alt="{{$tenis[$i]->modelo}}" srcset=""></td>
+                                    <td></td>
+                                    <td>
+                                        <h6 class="align-bottom">{{ $tenis[$i]->marca }} {{$tenis[$i]->modelo}}</h6>
+                                    </td>
+                                    <td>
+                                        <h6>{{ date('d/m/Y', strtotime($tenis[$i]->created_at))}}</h6>
+                                    </td>
+
+                                </tr>
+
+                                @endfor
+                                @endif
+
 
                         </tbody>
 
@@ -186,29 +205,26 @@
             $("#select_tenis2").prop("disabled", true);
             $('#select_tenis3').select2({});
             $("#select_tenis3").prop("disabled", true);
-            $('#select_tenis1').on('select2:unselect', function (e) {
+            $('#select_tenis1').on('select2:unselect', function(e) {
                 document.getElementById('figura1').src = "/img/semshoes.png";
                 $('#select_tenis1').select2({
-                placeholder: 'Escolha um modelo',
-                allowClear: true,
-                templateSelection: imagemTenis1,
+                    placeholder: 'Escolha um modelo',
+                    allowClear: true,
+                    templateSelection: imagemTenis1,
+                });
             });
-  // Do something
-});
-$('#select_tenis2').on('select2:unselect', function (e) {
+            $('#select_tenis2').on('select2:unselect', function(e) {
                 document.getElementById('figura2').src = "/img/semshoes.png";
                 $('#select_tenis2').select2({});
                 $("#select_tenis2").prop("disabled", true);
-            
-  // Do something
-});
-$('#select_tenis3').on('select2:unselect', function (e) {
+
+            });
+            $('#select_tenis3').on('select2:unselect', function(e) {
                 document.getElementById('figura3').src = "/img/semshoes.png";
                 $('#select_tenis2').select2({});
-            $('#select_tenis3').select2({});
-            $("#select_tenis3").prop("disabled", true);
-  // Do something
-});
+                $('#select_tenis3').select2({});
+                $("#select_tenis3").prop("disabled", true);
+            });
         });
 
         function imagemTenis1(select_tenis1) {
@@ -217,7 +233,7 @@ $('#select_tenis3').on('select2:unselect', function (e) {
                 document.getElementById('figura1').src = "/img/semshoes.png";
             }
             document.getElementById('figura1').src = "/img/tenis/" + select_tenis1.element.id.toLowerCase();
-            
+
             $('#select_tenis2').select2({
                 placeholder: 'Escolha um modelo',
                 allowClear: true,
@@ -234,7 +250,7 @@ $('#select_tenis3').on('select2:unselect', function (e) {
                 document.getElementById('figura2').src = "/img/semshoes.png";
             }
             document.getElementById('figura2').src = "/img/tenis/" + select_tenis2.element.id.toLowerCase();
-            
+
 
             $('#select_tenis3').select2({
                 placeholder: 'Escolha um modelo',
