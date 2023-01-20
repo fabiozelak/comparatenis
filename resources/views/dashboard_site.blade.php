@@ -35,7 +35,7 @@
                     <td>{{$listagem->indicacao}}</td>
                     <td>{{$listagem->peso}}</td>
                     <td>{{$listagem->ano}}</td>
-                    <td><a href="/tenis/edita?edita={{$listagem->id}}" class="btn btn-success">EDITAR</a>
+                    <td><a href="/tenis/edita/{{$listagem->id}}" class="btn btn-success">EDITAR</a>
                         <form action="/dashboard_site/{{$listagem->id}}" style="display: inline-block;" method="POSt">
                             @csrf
                             @method('DELETE')

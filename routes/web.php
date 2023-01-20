@@ -47,7 +47,7 @@ Route::middleware([
     //     ]);
     // })->name('dashboard');
     Route::post('/adicionar', [ComparaController::class, 'gravar_tenis']);
-    Route::get('/tenis/edita', [ComparaController::class, 'edita']);
+    Route::get('/tenis/edita/{id}', [ComparaController::class, 'edita']);
     Route::get('/tenis/adiciona', [ComparaController::class, 'adiciona']);
     Route::delete('/dashboard_site/{id}', [ComparaController::class, 'destroy']);
 });

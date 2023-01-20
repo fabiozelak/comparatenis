@@ -30,9 +30,12 @@ class ComparaController extends Controller
         return view('tenis.adiciona');
     }
 
-    public  function    edita()
+    public  function    edita($id)
     {
-        return view('tenis.edita');
+        $tenis = tenis::FindOrFail($id);
+        return view('tenis.edita', [
+            'tenis' => $tenis,
+        ]);
     }
     public  function    dashboard_site()
     {
@@ -147,8 +150,11 @@ class ComparaController extends Controller
 
     public function destroy($id)
     {
-        tenis::findOrFail($id)->delete();
+        $apaga = tenis::findOrFail($id);
+        Storage::disk('pulibc/img/tenis')->delete($apaga->imagem1);
+        $apaga->delete();
         $tenis = tenis::all();
+        //Falta colocar o drop das imagens
 
         return view('dashboard_site', [
             'tenis' => $tenis,

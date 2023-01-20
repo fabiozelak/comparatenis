@@ -3,7 +3,10 @@
 @section('title','Adicionar Tenis')
 
 @section('content')
-<!-- COLOCAR LUGAR PARA O UPLOAD DE 4 IMAGENS -->
+@guest
+<h1>Voce não tem permissçao de Acesso.</h1>
+@endguest
+@auth
 <div class="conteudo bg-light col-10 mx-auto py-3 rounded-bottom shadow">
     <div id="adicionar_tenis_container" class="offset-1 col-10">
         <h1 style="text-align: center; padding: 30px 0;">Adicione o tênis</h1>
@@ -164,6 +167,7 @@
 
 </div>
 </div>
+@endauth
 @endsection
 
 @section('scripts')
