@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\tenis;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ComparaController extends Controller
 {
@@ -151,13 +152,68 @@ class ComparaController extends Controller
     public function destroy($id)
     {
         $apaga = tenis::findOrFail($id);
-        Storage::disk('pulibc/img/tenis')->delete($apaga->imagem1);
+        $caminho = 'img/tenis/' . $apaga->imagem1;
+
+        if ($apaga->imagem1) {
+            $caminho = public_path('img/tenis/' . $apaga->imagem1);
+           unlink($caminho);
+        }
+        if ($apaga->imagem2) {
+            $caminho = public_path('img/tenis/' . $apaga->imagem2);
+            unlink($caminho);
+        }
+        if ($apaga->imagem3) {
+            $caminho = public_path('img/tenis/' . $apaga->imagem3);
+            unlink($caminho);
+        }
+        if ($apaga->imagem_thumb) {
+            $caminho = public_path('img/tenis/' . $apaga->imagem_thumb);
+            unlink($caminho);
+        }
+
         $apaga->delete();
         $tenis = tenis::all();
-        //Falta colocar o drop das imagens
-
         return view('dashboard_site', [
             'tenis' => $tenis,
         ])->with('msg', 'Evento Excluído com sucesso!');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // $caminho = public_path('img/tenis/' . $apaga->imagem1);
+    // $tenis = tenis::all();
+    // if($caminho){
+    //     unlink($caminho);
+    //     //Storage::disk('public')->delete($caminho);
+    //     Storage::delete($caminho);
+    //     //$apaga->delete();
+
+    // //Falta colocar o drop das imagens
+
+    // return view('dashboard_site', [
+    //     'tenis' => $tenis,
+    // ])->with('msg', 'Evento Excluído com sucesso!');
+    // }else{
+    //     return view('debug', [
+    //         'tenis' => $tenis,
+    //         'search' => $caminho,
+    //     ])->with('msg', 'Evento Excluído com ERRO!');
+    // }
+
+
+    // }
 }
